@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practical accounting, tax compliance, and business advisory support.">
+  <title>TODO | Firm name | Financial clarity for business</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Back to top"><span class="wordmark-mark">+</span><span data-business-name>TODO | Firm name</span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a href="#services">Services</a><a href="#approach">Approach</a><a href="#about">About</a><a class="nav-cta" href="#contact">Start a conversation <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-wrap">
+      <div class="hero-copy">
+        <p class="eyebrow reveal">Independent financial perspective <span></span></p>
+        <h1 class="reveal reveal-delay-1">Make the next<br><em>decision</em> clearer.</h1>
+        <p class="hero-intro reveal reveal-delay-2" data-business-description></p>
+        <a class="button button-dark reveal reveal-delay-3" href="#contact">Talk to us <span>↗</span></a>
+      </div>
+      <div class="hero-aside reveal reveal-delay-2">
+        <div class="hero-orbit"><span></span><span></span><span></span></div>
+        <p>Grounded advice.<br>Useful numbers.<br>Fewer surprises.</p>
+      </div>
+      <div class="hero-line" aria-hidden="true"></div>
+      <p class="hero-footnote">Serving <span data-business-address>TODO | Approved public office address</span></p>
+    </section>
+
+    <section class="trust-band"><div class="section-wrap trust-inner"><span>Built for the work behind the work</span><span>Compliance</span><span>Accounts</span><span>Advisory</span></div></section>
+
+    <section class="section-wrap services-section" id="services">
+      <div class="section-heading"><p class="eyebrow">What we can help with <span></span></p><h2>Good advice starts<br>with good <em>context.</em></h2></div>
+      <div class="services-grid" id="services-grid"></div>
+    </section>
+
+    <section class="approach-section" id="approach"><div class="section-wrap approach-grid"><div><p class="eyebrow eyebrow-light">Our approach <span></span></p><h2>Useful before<br>it is <em>impressive.</em></h2></div><div class="approach-copy"><p>Financial work should make decisions easier, not add another layer of fog. We start with the facts, explain the options, and keep the work proportional to what you actually need.</p><p class="small-copy">No exaggerated promises. No jargon for its own sake. Just a clear next step.</p><a class="text-link" href="#contact">Bring us a question <span>↗</span></a></div></div></section>
+
+    <section class="section-wrap about-section" id="about"><div class="about-grid"><div class="about-stamp">A considered<br>way of working.</div><div><p class="eyebrow">The practice <span></span></p><h2>Room for the<br>details that <em>matter.</em></h2><p class="about-copy">This is a placeholder profile for <strong data-business-name>TODO | Firm name</strong>. Replace this paragraph with the approved story of the practice, its professional experience, and the people it serves.</p><div class="profile-line"><span data-business-name>TODO | Firm name</span><span data-office-hours>TODO | Office hours</span></div></div></div></section>
+
+    <section class="contact-section" id="contact"><div class="section-wrap contact-grid"><div class="contact-intro"><p class="eyebrow eyebrow-light">Start here <span></span></p><h2>Bring the<br>question. <em>We'll listen.</em></h2><p>Tell us a little about what you need. This enquiry does not create a professional engagement.</p><div class="contact-details"><a data-business-email href="#">TODO | Official business email</a><a data-business-phone href="#">TODO | Official phone number</a></div></div><form id="contact-form" class="contact-form"><label>Full name<input name="name" autocomplete="name" required minlength="2" maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" required></label><label>Phone<input name="phone" autocomplete="tel" inputmode="tel" required placeholder="+91"></label><label>Company <span>(optional)</span><input name="company" autocomplete="organization"></label><label>What can we help with?<select name="service"><option value="">Select one</option><option>Tax compliance</option><option>GST compliance</option><option>Accounts and bookkeeping</option><option>Business advisory</option></select></label><label>Message<textarea name="message" required minlength="10" maxlength="2000" rows="4"></textarea></label><div class="honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div><label class="consent"><input type="checkbox" name="consent" required><span>I agree to the handling of my details for this enquiry and have read the <a href="#privacy">privacy note</a>.</span></label><button class="button button-light" type="submit">Send enquiry <span>↗</span></button><p id="form-status" class="form-status" role="status" aria-live="polite"></p></form></div></section>
+
+    <section class="privacy-note" id="privacy"><div class="section-wrap"><p><strong>Privacy note.</strong> This draft site collects only the details submitted through the enquiry form for responding to your request. Replace this text with the owner's reviewed privacy policy before launch.</p></div></section>
+  </main>
+  <footer class="site-footer"><div class="section-wrap footer-grid"><div><a class="wordmark wordmark-footer" href="#top"><span class="wordmark-mark">+</span><span data-business-name>TODO | Firm name</span></a><p>Financial clarity, with care.</p></div><div><p class="footer-label">Find us</p><p data-business-address>TODO | Approved public office address</p></div><div><p class="footer-label">Contact</p><a data-business-email href="#">TODO | Official business email</a><br><a data-business-phone href="#">TODO | Official phone number</a></div></div><div class="section-wrap footer-bottom"><span>© <span id="year"></span> <span data-business-name>TODO | Firm name</span></span><span>Draft website | Owner review required</span></div></footer>
+  <script src="/config.js"></script><script src="/script.js"></script><script>document.querySelector('#year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+[project]
+name = "ca-consulting-mvp"
+version = "0.1.0"
+description = "Placeholder-driven CA consulting website MVP"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.uv]
+package = false
