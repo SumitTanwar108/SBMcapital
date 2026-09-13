@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/config";
+export const metadata: Metadata = { title: "Services", description: "Accounting, compliance, and advisory services." };
+export default function ServicesPage() { return <main className="interior-page"><section className="section-wrap interior-hero"><p className="eyebrow">What we can help with <span /></p><h1>Good advice starts<br />with good <em>context.</em></h1><p>Service information remains subject to owner review. Replace each description with the firm's approved scope before launch.</p></section><section className="section-wrap services-section services-page-grid"><div className="services-grid">{siteConfig.services.map((service) => <article className="service-card" key={service.number}><span className="service-number">{service.number}</span><h3>{service.title}</h3><p>{service.text}</p></article>)}</div></section></main>; }
