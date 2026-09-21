@@ -10,7 +10,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <Link className="wordmark" href="/" onClick={close} aria-label={`${siteConfig.business.displayName} home`}>
-        <span className="wordmark-mark">+</span><span>{siteConfig.business.displayName}</span>
+        <span>{siteConfig.business.displayName}</span>
       </Link>
       <button className="menu-button" type="button" aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>Menu</button>
       <nav className={`site-nav${open ? " is-open" : ""}`} id="primary-navigation" aria-label="Primary navigation">

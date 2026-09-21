@@ -11,10 +11,9 @@ export function ContactForm() {
     event.preventDefault();
     setPending(true); setStatus({ type: "idle", message: "" });
     const form = event.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.consent = new FormData(form).get("consent") === "on" ? "true" : "false";
+    const formData = new FormData(form);
+    const payload = { ...Object.fromEntries(formData.entries()), consent: formData.get("consent") === "on" };
     try {
-      const payload = { ...data, consent: new FormData(form).get("consent") === "on" };
       const response = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error ?? "Please check the form and try again.");

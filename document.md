@@ -166,7 +166,24 @@ EMAIL_FROM_ADDRESS=approved-sender@example.com
 
 Do not commit `.env.local`. It is ignored by Git. Never place email provider secrets in browser code.
 
-The contact endpoint currently validates the request and returns a generic not-connected response until all email provider variables are configured. The actual transactional email provider integration must be completed before launch.
+The contact endpoint (`app/api/contact/route.ts`) sends enquiries through [Resend](https://resend.com) using its REST API directly via `fetch` (no SDK dependency). Until all three email variables below are set, it returns a generic not-connected response instead of attempting to send.
+
+### Setting up Resend
+
+1. Create a Resend account at resend.com (free tier: 3,000 emails/month).
+2. Get a sender address:
+   - Quick test: use the sandbox sender `onboarding@resend.dev`. It only delivers to the email address on your own Resend account — fine for confirming the integration works, not for real enquiries.
+   - Real use: verify your own domain in the Resend dashboard (Domains → Add Domain → add the DNS records it gives you), then use an address on that domain, e.g. `enquiries@yourdomain.com`.
+3. Create an API key: dashboard → API Keys → Create API Key. It looks like `re_xxxxxxxxxxxx`.
+4. Fill in `.env.local`:
+   ```env
+   CONTACT_RECIPIENT_EMAIL=askushapinnacleadvisory@gmail.com
+   EMAIL_PROVIDER_API_KEY=re_xxxxxxxxxxxx
+   EMAIL_FROM_ADDRESS=onboarding@resend.dev
+   ```
+   Swap `EMAIL_FROM_ADDRESS` for the verified domain address once you have one.
+5. Restart `npm run dev` — Next.js only reads `.env.local` at process startup, so edits require a restart.
+6. Test by submitting the form at `/contact` and confirming the email arrives.
 
 ## 7. Routes
 
@@ -235,7 +252,9 @@ The project includes:
 - Permissions policy.
 - Disabled `X-Powered-By` response header.
 
-The in-memory rate limiter is suitable only for a simple MVP and single-instance deployment. Use a shared rate-limit store or managed protection before scaling horizontally.
+The in-memory rate limiter is suitable only for a simple MVP and single-instance deployment. Use a shared rate-limit store or managed protection before scaling horizontally. It keys on the `X-Forwarded-For` header, which is only trustworthy behind a proxy that overwrites client-supplied values (Vercel's edge does this); behind a different or misconfigured proxy, a client can forge this header to bypass the limit. If the header is absent entirely, all callers share a single `"unknown"` bucket, so heavy legitimate traffic without that header could rate-limit unrelated users.
+
+The Content-Security-Policy currently allows `'unsafe-inline'` for `script-src`, which Next.js's App Router relies on for its own inline hydration scripts. There is no `dangerouslySetInnerHTML` or similar sink in this codebase today, so there is no known exploitable injection path, but `'unsafe-inline'` means CSP would not contain a future one. Removing it requires a per-request nonce issued from `middleware.ts` and threaded into the CSP header (Next.js reads the nonce automatically from a `script-src 'nonce-...'` value it finds in the response header) — a bigger change than a config tweak, so it is left as a follow-up rather than done inline here.
 
 ## 10. Validation before a commit
 
