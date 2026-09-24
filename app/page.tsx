@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
+import { ServiceAccordion } from "@/components/service-accordion";
 
 const SEAL_TICKS = Array.from({ length: 60 }, (_, i) => {
   const angle = (i * 6 * Math.PI) / 180;
@@ -65,22 +66,7 @@ export default function HomePage() {
           <p className="eyebrow">What we can help with <span /></p>
           <h2>Good advice starts<br />with good <em>context.</em></h2>
         </div>
-        <div className="services-grid">
-          {services.map((service) => (
-            <details className="service-card" key={service.title}>
-              <summary className="service-summary">
-                <h3 className="service-title">{service.title}</h3>
-                <span className="service-arrow" aria-hidden="true">⌄</span>
-              </summary>
-              <p className="service-text">{service.text}</p>
-              <ul className="service-subpoints">
-                {service.subServices.map((item) => (
-                  <li key={item.name}><strong>{item.name}</strong> — {item.detail}</li>
-                ))}
-              </ul>
-            </details>
-          ))}
-        </div>
+        <ServiceAccordion services={services} headingLevel="h3" />
       </section>
 
       <section className="approach-section" id="approach">
