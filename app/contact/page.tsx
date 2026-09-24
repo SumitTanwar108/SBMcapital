@@ -2,5 +2,5 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
 import { siteConfig } from "@/lib/config";
 
-export const metadata: Metadata = { title: "Contact", description: "Discuss your accounting, compliance, or advisory requirements." };
+export const metadata: Metadata = { title: "Contact", description: "Discuss your business's tax, compliance, legal, or advisory requirements." };
 export default function ContactPage() { const { business } = siteConfig; return <main className="interior-page"><section className="section-wrap interior-hero"><p className="eyebrow">Start here <span /></p><h1>Bring the question.<br /><em>We'll listen.</em></h1><p>Tell us a little about what you need. This enquiry does not create a professional engagement.</p></section><section className="contact-section"><div className="section-wrap contact-grid"><div className="contact-intro"><p className="eyebrow eyebrow-light">Contact details <span /></p><h2>Clear next steps<br />start with a<br /><em>conversation.</em></h2><div className="contact-details"><a href={`mailto:${business.email}`}>{business.email}</a>{!business.phone.startsWith("TODO") && <a href={`tel:${business.phone}`}>{business.phone}</a>}<span>{business.address}, {business.city}, {business.state}</span><span>{business.officeHours}</span></div></div><ContactForm /></div></section></main>; }

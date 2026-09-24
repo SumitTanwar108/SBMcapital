@@ -1,6 +1,20 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
+const SEAL_TICKS = Array.from({ length: 60 }, (_, i) => {
+  const angle = (i * 6 * Math.PI) / 180;
+  const long = i % 5 === 0;
+  const rOuter = long ? 133 : 129;
+  const rInner = long ? 115 : 119;
+  return {
+    x1: 150 + rOuter * Math.cos(angle),
+    y1: 150 + rOuter * Math.sin(angle),
+    x2: 150 + rInner * Math.cos(angle),
+    y2: 150 + rInner * Math.sin(angle),
+    long
+  };
+});
+
 export default function HomePage() {
   const { business, services, professionals } = siteConfig;
   return (
@@ -8,19 +22,29 @@ export default function HomePage() {
       <section className="hero section-wrap">
         <div className="hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Chartered accountants · {business.city} <span /></p>
-            <h1>Make the books<br />balance. Then make<br />the <em>decision.</em></h1>
+            <p className="eyebrow">Business consultants · {business.city} <span /></p>
+            <h1>Building Businesses,<br />Building Partnerships.<br />Growing <em>Together.</em></h1>
             <p className="hero-intro">{business.description}</p>
             <Link className="button button-dark" href="/contact">Talk to us <span>↗</span></Link>
           </div>
-          <div className="voucher" aria-hidden="true">
-            <p className="voucher-head">Voucher · General ledger</p>
-            <div className="voucher-columns"><span>Particulars</span><span>Dr</span><span>Cr</span></div>
-            <div className="voucher-row"><span>Guesswork</span><span className="voucher-mark voucher-debit">✕</span><span /></div>
-            <div className="voucher-row"><span>Missed filings</span><span className="voucher-mark voucher-debit">✕</span><span /></div>
-            <div className="voucher-row"><span>Clear accounts</span><span /><span className="voucher-mark voucher-credit">✓</span></div>
-            <div className="voucher-row"><span>Straight answers</span><span /><span className="voucher-mark voucher-credit">✓</span></div>
-            <div className="voucher-total"><span>Balance c/f</span><span className="voucher-result">Clarity</span></div>
+          <div className="hero-seal" aria-hidden="true">
+            <svg viewBox="0 0 300 300" role="presentation">
+              <circle cx="150" cy="150" r="136" className="seal-ring-outer" />
+              <circle cx="150" cy="150" r="112" className="seal-ring-inner" />
+              {SEAL_TICKS.map((tick, index) => (
+                <line
+                  key={index}
+                  x1={tick.x1} y1={tick.y1} x2={tick.x2} y2={tick.y2}
+                  className={tick.long ? "seal-tick seal-tick-long" : "seal-tick"}
+                />
+              ))}
+            </svg>
+            <div className="seal-text">
+              <span className="seal-name">{business.displayName}</span>
+              <span className="seal-divider" />
+              <span className="seal-role">Business Consultants</span>
+              <span className="seal-city">{business.city}</span>
+            </div>
           </div>
         </div>
         <div className="hero-line" />
@@ -41,16 +65,19 @@ export default function HomePage() {
           <p className="eyebrow">What we can help with <span /></p>
           <h2>Good advice starts<br />with good <em>context.</em></h2>
         </div>
-        <div className="services-head" aria-hidden="true"><span>Code</span><span>Particulars</span></div>
         <div className="services-grid">
           {services.map((service) => (
-            <details className="service-card" key={service.code}>
+            <details className="service-card" key={service.title}>
               <summary className="service-summary">
-                <span className="service-code">{service.code}</span>
                 <h3 className="service-title">{service.title}</h3>
                 <span className="service-arrow" aria-hidden="true">⌄</span>
               </summary>
               <p className="service-text">{service.text}</p>
+              <ul className="service-subpoints">
+                {service.subServices.map((item) => (
+                  <li key={item.name}><strong>{item.name}</strong> — {item.detail}</li>
+                ))}
+              </ul>
             </details>
           ))}
         </div>
@@ -63,7 +90,7 @@ export default function HomePage() {
             <h2>Useful before<br />it is <em>impressive.</em></h2>
           </div>
           <div className="approach-copy">
-            <p>Financial work should make decisions easier, not add another layer of fog. We start with the facts, explain the options, and keep the work proportional to what you actually need.</p>
+            <p>Business decisions should be easier to make, not buried under another layer of fog. We start with the facts, explain the options, and keep the work proportional to what you actually need.</p>
             <p className="small-copy">No exaggerated promises. No jargon for its own sake. Just a clear next step.</p>
             <Link className="text-link" href="/contact">Bring us a question <span>↗</span></Link>
           </div>

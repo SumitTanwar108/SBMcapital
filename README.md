@@ -1,13 +1,13 @@
-# CA Consulting Website MVP
+# Business Consultancy Website MVP
 
-A placeholder-driven Next.js App Router MVP for an Indian CA consulting website. The design follows a restrained professional-services direction: warm paper tones, deep teal, muted terracotta, editorial typography, generous spacing, and an architectural texture asset.
+A placeholder-driven Next.js App Router MVP for an Indian business consultancy, led by Chartered Accountants. The design follows a ledger-themed direction: sage-green ruled lines, deep indigo ink, a formal deep-green accent, and brass highlights, using the IBM Plex Sans/Serif/Mono type system (self-hosted via `next/font/google`), built around a certification-seal hero and a dropdown-per-row services ledger.
 
 ## Run from the repository
 
 Open PowerShell in the repository root:
 
 ```powershell
-cd D:\SBM\SBMcapital
+cd C:\Users\300537\SBM\SBMcapital
 ```
 
 Install dependencies:
@@ -43,7 +43,7 @@ Edit [`lib/config.ts`](lib/config.ts) before sharing the site. This is the centr
 - Firm display and legal name.
 - Tagline and business description.
 - City, state, address, phone, email, and office hours.
-- Professional names, designations, and qualifications.
+- Professional profiles: an array of directors, each with a name, designation, qualifications, and an optional bio (leave `bio` empty for anyone whose background hasn't been owner-verified yet).
 - Brand colors.
 - Service names and descriptions.
 - SEO title, description, keywords, and Open Graph image.
@@ -110,7 +110,8 @@ Replace firm and professional placeholders, add reviewed privacy/terms/disclaime
 - `app/` — App Router pages, metadata, API route, robots, sitemap, and global styles.
 - `components/` — reusable header, footer, shell, and contact form.
 - `lib/config.ts` — single source of truth for business content and branding.
-- `public/office-texture.svg` — original abstract visual asset for the hero.
+- `public/office-texture.svg` — unused legacy asset kept for reference; the homepage hero is the CSS/SVG certification-seal graphic, and the Open Graph preview image is generated at build time by `app/opengraph-image.tsx` via `next/og` (a real PNG, not a static file).
+- `app/icon.svg` — browser tab favicon.
 
 ## Push to a remote repository
 

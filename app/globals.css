@@ -1,19 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,600;1,500;1,600&display=swap');
-
 :root{
   --paper:#f2f4ec;
   --ink:#16233b;
   --rule:#a9bfa0;
   --rule-soft:rgba(169,191,160,.35);
-  --signal:#c1272d;
-  --signal-light:#e2626a;
+  --signal:#c1642a;
+  --signal-on-dark:#c1642a;
+  --error:#e2626a;
+  --ember:#c1642a;
   --brass:#9c7a32;
   --brass-light:#d9b54a;
   --muted:#5b6b63;
   --paper-tint:rgba(242,244,236,.72);
-  --font-sans:'IBM Plex Sans',system-ui,sans-serif;
-  --font-serif:'IBM Plex Serif',Georgia,serif;
-  --font-mono:'IBM Plex Mono',monospace;
 }
 
 *{box-sizing:border-box}
@@ -48,19 +45,20 @@ a{color:inherit;text-decoration:none}
 .hero-line{background:var(--rule-soft);bottom:22px;height:1px;left:0;position:absolute;width:100%}
 .hero-footnote{bottom:-1px;color:var(--muted);font-family:var(--font-mono);font-size:10px;left:0;margin:0;position:absolute;text-transform:uppercase}
 
-/* Voucher (hero signature) */
-.voucher{background:var(--paper);border:1px solid var(--ink);padding:26px 24px}
-.voucher-head{color:var(--brass);font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;margin:0 0 18px;text-transform:uppercase}
-.voucher-columns,.voucher-row{display:grid;gap:10px;grid-template-columns:1fr 40px 40px}
-.voucher-columns{border-bottom:1px solid var(--rule);color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;padding-bottom:10px;text-align:right;text-transform:uppercase}
-.voucher-columns span:first-child{text-align:left}
-.voucher-row{border-bottom:1px solid var(--rule-soft);font-size:14px;padding:12px 0;text-align:right}
-.voucher-row span:first-child{text-align:left}
-.voucher-mark{font-family:var(--font-mono);font-size:13px}
-.voucher-debit{color:var(--signal)}
-.voucher-credit{color:var(--brass)}
-.voucher-total{border-top:3px double var(--ink);display:grid;font-weight:600;grid-template-columns:1fr auto;margin-top:6px;padding-top:14px}
-.voucher-result{color:var(--signal);font-family:var(--font-serif);font-size:17px;font-style:italic;text-align:right}
+/* Seal (hero signature) */
+.hero-seal{align-items:center;animation:stamp-in .6s cubic-bezier(.2,.8,.2,1) both;display:flex;justify-content:center;margin-inline:auto;max-width:420px;position:relative;transform:rotate(-4deg)}
+.hero-seal svg{height:auto;width:100%}
+.seal-ring-outer{fill:none;stroke:var(--ink);stroke-width:1.5}
+.seal-ring-inner{fill:none;stroke:var(--brass);stroke-width:1.5}
+.seal-tick{opacity:.35;stroke:var(--ink);stroke-width:1}
+.seal-tick-long{opacity:.6;stroke-width:1.5}
+.seal-text{align-items:center;display:flex;flex-direction:column;gap:10px;inset:0;justify-content:center;position:absolute;text-align:center}
+.seal-name{color:var(--ink);font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;max-width:150px;text-transform:uppercase}
+.seal-divider{background:var(--rule);height:1px;width:32px}
+.seal-role{color:var(--signal);font-family:var(--font-serif);font-size:20px;font-style:italic}
+.seal-city{color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+@keyframes stamp-in{from{opacity:0;transform:rotate(-4deg) scale(1.18)}to{opacity:1;transform:rotate(-4deg) scale(1)}}
+@media(prefers-reduced-motion:reduce){.hero-seal{animation:none}}
 
 /* Trust band */
 .trust-band{background:var(--ink);color:var(--paper-tint)}
@@ -71,19 +69,20 @@ a{color:inherit;text-decoration:none}
 .services-section{padding-bottom:130px;padding-top:130px}
 .section-heading{display:flex;justify-content:space-between;margin-bottom:60px}
 .section-heading h2,.about-section h2{font-size:clamp(40px,5.2vw,64px);max-width:620px}
-.services-head{border-top:1px solid var(--ink);color:var(--muted);display:flex;font-family:var(--font-mono);font-size:10px;gap:24px;letter-spacing:.1em;padding-top:12px;text-transform:uppercase}
-.services-head span:first-child{width:64px}
-.services-grid{display:block}
+.services-grid{border-top:1px solid var(--ink);display:block}
 .service-card{border-bottom:1px solid var(--rule)}
 .service-card:hover{background:rgba(169,191,160,.12)}
 .service-summary{align-items:center;cursor:pointer;display:flex;gap:24px;list-style:none;padding:22px 0}
 .service-summary::-webkit-details-marker{display:none}
 .service-summary:focus-visible{outline:2px solid var(--signal);outline-offset:4px}
-.service-code{color:var(--brass);flex-shrink:0;font-family:var(--font-mono);font-size:13px;font-weight:600;letter-spacing:.06em;width:64px}
 .service-title{flex:1;font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.3;margin:0}
 .service-arrow{color:var(--signal);flex-shrink:0;font-size:20px;opacity:.6;transition:transform .2s ease}
 .service-card[open] .service-summary .service-arrow{transform:rotate(180deg)}
-.service-text{color:var(--muted);font-size:14px;line-height:1.65;margin:0 0 24px;max-width:520px;padding-left:88px}
+.service-text{color:var(--muted);font-size:14px;line-height:1.65;margin:0 0 14px;max-width:560px}
+.service-subpoints{display:flex;flex-direction:column;gap:8px;list-style:none;margin:0 0 24px;max-width:560px}
+.service-subpoints li{color:var(--muted);font-size:13px;line-height:1.5}
+.service-subpoints li::before{color:var(--brass);content:"\2013  "}
+.service-subpoints li strong{color:var(--ink);font-weight:600}
 .service-card:hover .service-arrow{opacity:1}
 
 /* Approach (inverse section) */
@@ -108,7 +107,8 @@ a{color:inherit;text-decoration:none}
 .profile-line{border-top:1px solid var(--rule);display:flex;font-family:var(--font-mono);font-size:11px;justify-content:space-between;padding-top:15px;text-transform:uppercase}
 
 /* Contact teaser (closing band) */
-.contact-teaser{background:var(--signal);color:var(--paper);padding:110px 0}
+.contact-teaser{background:var(--ember);color:var(--paper);padding:110px 0}
+.approach-section h2 em,.contact-section h2 em{color:var(--signal-on-dark)}
 .contact-teaser h2 em{color:var(--ink)}
 .teaser-inner{align-items:flex-end;display:grid;grid-template-columns:1fr 1fr}
 .teaser-inner h2{grid-column:1}
@@ -139,7 +139,7 @@ a{color:inherit;text-decoration:none}
 .honeypot{display:none!important}
 .form-status{font-size:12px;margin:0}
 .form-status.success{color:#8fbf8a}
-.form-status.error{color:var(--signal-light)}
+.form-status.error{color:var(--error)}
 
 /* Legal */
 .legal-page{padding-bottom:150px;padding-top:100px}
@@ -184,7 +184,7 @@ a{color:inherit;text-decoration:none}
   .hero h1,h1{font-size:44px}
   .hero-intro{max-width:320px}
   .hero-footnote{font-size:8px;max-width:250px}
-  .voucher{padding:22px 18px}
+  .hero-seal{max-width:260px}
   .contact-form{display:block}
   .contact-form label{margin-bottom:22px}
   .contact-form .consent{display:flex}

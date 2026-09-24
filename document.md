@@ -2,7 +2,7 @@
 
 ## 1. What this project is
 
-This repository contains a placeholder-driven Next.js App Router website for an Indian CA consulting business.
+This repository contains a placeholder-driven Next.js App Router website for an Indian business consultancy led by Chartered Accountants.
 
 The project includes:
 
@@ -96,11 +96,14 @@ Update the following sections with owner-approved information:
 - `email`
 - `officeHours`
 
-### Professional
+### Professionals
+
+`professionals` is an array — one entry per director:
 
 - `name`
 - `designation`
 - `qualifications`
+- `bio` — a short, owner-verified paragraph of real background (education, experience, prior roles). Leave it as an empty string (`""`) for anyone whose background hasn't been confirmed yet; the About page only renders a bio paragraph when one is present, so an empty string simply shows the name and role line with no fabricated content.
 
 ### Brand
 
@@ -110,7 +113,7 @@ Update the following sections with owner-approved information:
 
 ### Services
 
-Update the service titles and descriptions only after confirming that the firm actually offers them.
+`services` is an array of `{ title, text, subServices }`. `title` is the main service heading, `text` is its summary description, and `subServices` is an array of `{ name, detail }` — each a specific sub-service with a one-line explanation. Each row renders as a collapsed summary (title only) that expands to show `text` followed by the full `subServices` list on click. Update titles, descriptions, and sub-services only after confirming that the firm actually offers them.
 
 Do not leave `TODO` values in a public launch. Do not add unverified qualifications, registrations, awards, clients, testimonials, rankings, statistics, or performance claims.
 
@@ -128,10 +131,11 @@ Update:
 seo: {
   title: "Approved page title",
   description: "Approved search description",
-  keywords: ["approved keyword", "approved service keyword"],
-  ogImage: "/office-texture.svg"
+  keywords: ["approved keyword", "approved service keyword"]
 }
 ```
+
+The Open Graph preview image is generated automatically by `app/opengraph-image.tsx` (using `next/og`, a real PNG, not a static file) from `siteConfig.business` and `siteConfig.seo.description` — update the copy there if the layout needs to change. The browser tab icon is `app/icon.svg`.
 
 The metadata is consumed by:
 
@@ -211,8 +215,11 @@ app/
   privacy/page.tsx
   services/page.tsx
   terms/page.tsx
+  fonts.ts
   globals.css
+  icon.svg
   layout.tsx
+  opengraph-image.tsx
   page.tsx
   robots.ts
   sitemap.ts
