@@ -1,6 +1,6 @@
 # Business Consultancy Website MVP
 
-A placeholder-driven Next.js App Router MVP for an Indian business consultancy, led by Chartered Accountants. The design follows a ledger-themed direction: sage-green ruled lines, deep indigo ink, a formal deep-green accent, and brass highlights, using the IBM Plex Sans/Serif/Mono type system (self-hosted via `next/font/google`), built around a certification-seal hero and a dropdown-per-row services ledger.
+A config-driven Next.js App Router website for an Indian business consultancy led by Chartered Accountants. The current design uses a warm editorial palette, Manrope and Cormorant Garamond typography, an asymmetric homepage hero with layered compliance/advisory panels, and a compact hierarchical services accordion.
 
 ## Run from the repository
 
@@ -45,8 +45,17 @@ Edit [`lib/config.ts`](lib/config.ts) before sharing the site. This is the centr
 - City, state, address, phone, email, and office hours.
 - Professional profiles: an array of directors, each with a name, designation, qualifications, and an optional bio (leave `bio` empty for anyone whose background hasn't been owner-verified yet).
 - Brand colors.
-- Service names and descriptions.
+- Homepage and about-page editorial content under `content.home` and `content.about`.
+- Service groups, categories, and item-level descriptions.
 - SEO title, description, keywords, and Open Graph image.
+
+The services section is hierarchical:
+
+- `services[]` contains each primary service line.
+- `services[].categories[]` contains grouped clusters within a service line.
+- `services[].categories[].items[]` contains the specific sub-services and their descriptions.
+
+Owner-provided long-form about content is currently mapped into `content.about`, and the homepage welcome block is managed through `content.home`.
 
 Replace all `TODO` values with owner-approved information. Verify existing contact, address, professional, and qualification details before publishing.
 
@@ -100,6 +109,9 @@ The production server is available at http://localhost:3000 after `npm run build
 - Placeholder-safe config and non-exaggerated content.
 - `POST /api/contact` route with request-size limits, in-memory rate limiting, origin-safe same-site routing, and no payload logging.
 - Security headers including CSP, frame protection, referrer policy, and permissions policy.
+- A homepage hero with editorial left-side copy, layered right-side advisory panels, and a lower signature rail.
+- A dedicated about page using centralised overview, mission, vision, values, and strategic-pillar content.
+- A nested services accordion with expandable service clusters and item-level descriptions.
 
 ## Before launch
 
@@ -109,8 +121,8 @@ Replace firm and professional placeholders, add reviewed privacy/terms/disclaime
 
 - `app/` — App Router pages, metadata, API route, robots, sitemap, and global styles.
 - `components/` — reusable header, footer, shell, and contact form.
-- `lib/config.ts` — single source of truth for business content and branding.
-- `public/office-texture.svg` — unused legacy asset kept for reference; the homepage hero is the CSS/SVG certification-seal graphic, and the Open Graph preview image is generated at build time by `app/opengraph-image.tsx` via `next/og` (a real PNG, not a static file).
+- `lib/config.ts` — single source of truth for business identity, services hierarchy, and homepage/about content.
+- `public/office-texture.svg` — unused legacy asset kept for reference; the homepage hero is now CSS-driven with layered panels and orbital graphics, and the Open Graph preview image is generated at build time by `app/opengraph-image.tsx` via `next/og` (a real PNG, not a static file).
 - `app/icon.svg` — browser tab favicon.
 
 ## Push to a remote repository

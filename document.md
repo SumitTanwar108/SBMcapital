@@ -113,7 +113,32 @@ Update the following sections with owner-approved information:
 
 ### Services
 
-`services` is an array of `{ title, text, subServices }`. `title` is the main service heading, `text` is its summary description, and `subServices` is an array of `{ name, detail }` — each a specific sub-service with a one-line explanation. Each row renders as a collapsed summary (title only) that expands to show `text` followed by the full `subServices` list on click. Update titles, descriptions, and sub-services only after confirming that the firm actually offers them.
+`services` is hierarchical and follows this structure:
+
+- `services[]` — top-level service lines such as Regulatory Certifications or Direct & Indirect Tax.
+- `services[].categories[]` — grouped service clusters within each line.
+- `services[].categories[].items[]` — the specific sub-services, each with a `name` and `detail`.
+
+The UI renders this as a compact accordion: top-level services expand first, then each service cluster expands into its item list. Update titles, descriptions, categories, and items only after confirming that the firm actually offers them.
+
+### Homepage and About Content
+
+`content.home` controls the homepage editorial text:
+
+- `heroIntro`
+- `welcomeTitle`
+- `welcomeParagraphs`
+- `focusAreas`
+
+`content.about` controls the about page and homepage about teaser:
+
+- `overview`
+- `mission`
+- `vision`
+- `values`
+- `strategicPillars`
+
+Use these sections for owner-approved long-form narrative content instead of hardcoding copy directly into page components.
 
 Do not leave `TODO` values in a public launch. Do not add unverified qualifications, registrations, awards, clients, testimonials, rankings, statistics, or performance claims.
 
@@ -239,6 +264,13 @@ package.json
 ```
 
 Use `lib/config.ts` for business content. Use components for shared UI. Keep route-specific content in the relevant `app/**/page.tsx` file.
+
+The current homepage design is no longer the earlier seal-led layout. It now uses:
+
+- an editorial left-side copy column,
+- a layered right-side hero composition,
+- a lower signature rail,
+- and a compact nested services accordion.
 
 ## 9. Security controls
 

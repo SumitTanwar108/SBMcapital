@@ -2,22 +2,8 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { ServiceAccordion } from "@/components/service-accordion";
 
-const SEAL_TICKS = Array.from({ length: 60 }, (_, i) => {
-  const angle = (i * 6 * Math.PI) / 180;
-  const long = i % 5 === 0;
-  const rOuter = long ? 133 : 129;
-  const rInner = long ? 115 : 119;
-  return {
-    x1: 150 + rOuter * Math.cos(angle),
-    y1: 150 + rOuter * Math.sin(angle),
-    x2: 150 + rInner * Math.cos(angle),
-    y2: 150 + rInner * Math.sin(angle),
-    long
-  };
-});
-
 export default function HomePage() {
-  const { business, services, professionals } = siteConfig;
+  const { business, content, services, professionals } = siteConfig;
   return (
     <main>
       <section className="hero section-wrap">
@@ -25,26 +11,58 @@ export default function HomePage() {
           <div className="hero-copy">
             <p className="eyebrow">Business consultants · {business.city} <span /></p>
             <h1>Building Businesses,<br />Building Partnerships.<br />Growing <em>Together.</em></h1>
-            <p className="hero-intro">{business.description}</p>
-            <Link className="button button-dark" href="/contact">Talk to us <span>↗</span></Link>
+            <p className="hero-intro">{content.home.heroIntro}</p>
+            <p className="hero-support">A multidisciplinary advisory practice for businesses that need careful judgement, clean execution, and a dependable partner through growth and compliance.</p>
+            <div className="hero-actions">
+              <Link className="button button-dark" href="/contact">Talk to us <span>↗</span></Link>
+              <Link className="text-link text-link-dark" href="/about">Read our story <span>↗</span></Link>
+            </div>
+            <div className="hero-focus" aria-label="Key focus areas">
+              {content.home.focusAreas.map((item) => <span key={item}>{item}</span>)}
+            </div>
+            <div className="hero-copy-accent" aria-hidden="true">
+              <span className="hero-copy-accent-line" />
+              <div className="hero-copy-accent-items">
+                <span>{business.city} based</span>
+                <span className="hero-copy-accent-separator">•</span>
+                <span>Financial</span>
+                <span className="hero-copy-accent-separator">•</span>
+                <span>Legal</span>
+                <span className="hero-copy-accent-separator">•</span>
+                <span>Strategic</span>
+              </div>
+            </div>
           </div>
-          <div className="hero-seal" aria-hidden="true">
-            <svg viewBox="0 0 300 300" role="presentation">
-              <circle cx="150" cy="150" r="136" className="seal-ring-outer" />
-              <circle cx="150" cy="150" r="112" className="seal-ring-inner" />
-              {SEAL_TICKS.map((tick, index) => (
-                <line
-                  key={index}
-                  x1={tick.x1} y1={tick.y1} x2={tick.x2} y2={tick.y2}
-                  className={tick.long ? "seal-tick seal-tick-long" : "seal-tick"}
-                />
-              ))}
-            </svg>
-            <div className="seal-text">
-              <span className="seal-name">{business.displayName}</span>
-              <span className="seal-divider" />
-              <span className="seal-role">Business Consultants</span>
-              <span className="seal-city">{business.city}</span>
+          <div className="hero-composition" aria-hidden="true">
+            <div className="hero-composition-grid" />
+            <div className="hero-orbit hero-orbit-outer" />
+            <div className="hero-orbit hero-orbit-inner" />
+            <div className="hero-orbit hero-orbit-core" />
+            <div className="hero-beam hero-beam-one" />
+            <div className="hero-beam hero-beam-two" />
+            <div className="hero-panel hero-panel-primary">
+              <span className="hero-panel-kicker">How we support growth</span>
+              <strong>Compliance that stays readable.</strong>
+              <p>Advisory, registrations, taxation, and operational support arranged as one connected business picture rather than disconnected tasks.</p>
+            </div>
+            <div className="hero-panel hero-panel-note hero-panel-note-a">
+              <span className="hero-metric-label">Regulatory path</span>
+              <p>Licences, certifications, filings, and procedural guidance mapped into a clearer route.</p>
+            </div>
+            <div className="hero-panel hero-panel-note hero-panel-note-b">
+              <span className="hero-metric-label">Financial grip</span>
+              <p>Accounts, controls, and tax positions designed to hold up under scrutiny.</p>
+            </div>
+            <div className="hero-panel hero-panel-note hero-panel-note-c">
+              <span className="hero-metric-label">Strategic view</span>
+              <p>Structures, transactions, and growth decisions considered with the downstream impact in view.</p>
+            </div>
+            <div className="hero-composition-signature">
+              <span className="hero-signature-name">{business.displayName}</span>
+              <span className="hero-signature-separator" aria-hidden="true">•</span>
+              <span>{business.city}</span>
+              <span className="hero-signature-separator" aria-hidden="true">•</span>
+              <span>{business.tagline}</span>
             </div>
           </div>
         </div>
@@ -58,6 +76,21 @@ export default function HomePage() {
           <span>Compliance</span>
           <span>Accounts</span>
           <span>Advisory</span>
+        </div>
+      </section>
+
+      <section className="section-wrap welcome-section">
+        <div className="welcome-shell">
+          <div className="welcome-lead">
+            <p className="eyebrow">A welcome note <span /></p>
+            <h2>{content.home.welcomeTitle}</h2>
+          </div>
+          <div className="welcome-copy">
+            {content.home.welcomeParagraphs.slice(0, 3).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            <p className="welcome-signoff">{content.home.welcomeParagraphs[3]}</p>
+          </div>
         </div>
       </section>
 
@@ -85,11 +118,12 @@ export default function HomePage() {
 
       <section className="section-wrap about-section">
         <div className="about-grid">
-          <div className="about-stamp">A considered<br />way of working.</div>
+          <div className="about-stamp">Trust, rigour,<br />and long-term<br />partnership.</div>
           <div>
             <p className="eyebrow">The practice <span /></p>
-            <h2>Room for the<br />details that <em>matter.</em></h2>
-            <p className="about-copy">{professionals.map((person) => person.name).join(" and ")} lead the practice day to day, working directly across tax, GST, accounts, and the wider services <strong>{business.displayName}</strong> offers.</p>
+            <h2>Built to support<br />complex decisions<br />with <em>clarity.</em></h2>
+            <p className="about-copy">{siteConfig.content.about.overview}</p>
+            <p className="about-copy about-copy-compact">{professionals.map((person) => person.name).join(" and ")} lead the practice day to day, working directly across tax, GST, accounts, and the wider services <strong>{business.displayName}</strong> offers.</p>
             <Link className="text-link text-link-dark" href="/about">Meet the practice <span>↗</span></Link>
           </div>
         </div>

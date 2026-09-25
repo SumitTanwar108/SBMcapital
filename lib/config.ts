@@ -36,6 +36,43 @@ export const siteConfig = {
     ink: "#16233b",
     paper: "#f2f4ec"
   },
+  content: {
+    home: {
+      heroIntro: "Financial, legal, and strategic advisory for businesses navigating regulatory complexity, operational pressure, and growth decisions.",
+      welcomeTitle: "Welcome to Usha Pinnacle Advisory",
+      welcomeParagraphs: [
+        "In today's dynamic economic landscape, businesses face an unprecedented array of regulatory complexities, financial decisions, and operational challenges. At Usha Pinnacle Advisory, we established this firm with a singular, clear purpose: to serve as a reliable anchor and growth catalyst for enterprises navigating this intricate corporate environment.",
+        "Our journey is built on the bedrock of trust, integrity, and deep domain expertise. We take pride in being an Indian firm that understands the heartbeat of domestic businesses, while also supporting national and multinational corporations with the structure and rigour they need.",
+        "We do not view ourselves merely as consultants, but as long-term strategic partners. Whether you are an emerging enterprise aiming to scale, or an established corporation managing complex regulatory compliance, our legal and financial team is committed to delivering tailored, future-ready solutions that protect and propel your business.",
+        "Thank you for placing your trust in Usha Pinnacle Advisory. We look forward to partnering with you on your journey toward sustainable growth and institutional success."
+      ],
+      focusAreas: ["Regulatory clarity", "Financial stewardship", "Strategic growth planning"]
+    },
+    about: {
+      overview: "Usha Pinnacle Advisory is a premier consulting firm in India, specialising in comprehensive financial, legal and strategic advisory services for national and multinational corporations. Driven by a commitment to excellence, we deliver a sophisticated suite of professional solutions precisely tailored to navigate the dynamic complexities of modern corporate environments.",
+      mission: "Our mission is to empower enterprises through expert guidance, innovative frameworks, and steadfast support, enabling them to seamlessly navigate the intricacies of the marketplace. We are dedicated to fostering enduring client partnerships, delivering exceptional value, and driving sustainable growth for all stakeholders.",
+      vision: "Our vision is to be the premier trusted partner for businesses seeking integrated consultancy services across India and the global marketplace. We aspire to benchmark new standards of industry excellence, continually expanding our capabilities to catalyze the long-term success, regulatory resilience, and prosperity of our clients and communities.",
+      values: [
+        {
+          title: "Integrity",
+          text: "Upholding the highest benchmarks of ethics, transparency, and professional responsibility in every engagement."
+        },
+        {
+          title: "Excellence",
+          text: "Committing to flawless execution and the highest quality of service delivery."
+        },
+        {
+          title: "Innovation",
+          text: "Fostering a forward-thinking culture to design agile, future-ready business solutions."
+        },
+        {
+          title: "Client-Centricity",
+          text: "Aligning our strategies perfectly with our clients objectives to ensure impactful results."
+        }
+      ],
+      strategicPillars: "Usha Pinnacle Advisory caters to a sophisticated clientele, ranging from emerging enterprises to large-scale corporations across diverse industry verticals. Our deep domain expertise and nuanced industry knowledge empower us to engineer bespoke solutions that resolve complex regulatory and operational challenges. With a proven track record in accelerating corporate growth, ensuring rigorous regulatory compliance, and facilitating seamless market expansion, we serve as a trusted catalyst for institutional success."
+    }
+  },
   services: [
     {
       title: "Regulatory Certifications",
