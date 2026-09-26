@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
   }
 
   // Rate limiting
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  const ip = request.headers.get("cf-connecting-ip") ?? request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
   const now = Date.now();
   const current = attempts.get(ip);
 

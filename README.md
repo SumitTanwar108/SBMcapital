@@ -75,7 +75,30 @@ CONTACT_RECIPIENT_EMAIL=TODO
 
 `FORMSPREE_FORM_ID` is server-only (no `NEXT_PUBLIC_` prefix) and identifies a form on [Formspree](https://formspree.io). The actual recipient inbox is whatever address is configured and verified for that form in the Formspree dashboard — `CONTACT_RECIPIENT_EMAIL` is documentation only, since Formspree does not accept a recipient override in the request (anti-spam design). Until `FORMSPREE_FORM_ID` is configured, the contact endpoint intentionally returns a generic not-configured response. It does not store or log submissions. Never commit `.env.local` or provider credentials.
 
-**Deploying:** `.env.local` never deploys automatically — set the same variables in your hosting provider's project environment settings too (e.g. on Vercel: Project → Settings → Environment Variables), using the real production domain for `NEXT_PUBLIC_SITE_URL`.
+## Deploy to Cloudflare Workers
+
+The site deploys to Cloudflare Workers via the [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare) adapter — no application code changes needed, just a deployment layer on top of the standard `next build`.
+
+One-time setup:
+
+```powershell
+npx wrangler login
+npx wrangler secret put FORMSPREE_FORM_ID
+```
+
+`wrangler login` opens a browser OAuth flow; `wrangler secret put` prompts for the value at an interactive prompt so it never lands in shell history. `.env.local` never deploys automatically and Next.js inlines `NEXT_PUBLIC_SITE_URL` at **build time**, so create `.env.production.local` (gitignored, higher precedence than `.env.local`) with the real production domain before deploying:
+
+```env
+NEXT_PUBLIC_SITE_URL=https://your-real-domain.example
+```
+
+Then deploy:
+
+```powershell
+npm run deploy
+```
+
+This prints a working `*.workers.dev` URL. To serve it from a real domain already on the same Cloudflare account: dashboard → Workers & Pages → the Worker → Settings → Domains & Routes → Add → Custom Domain. Cloudflare provisions DNS and SSL automatically. `CONTACT_RECIPIENT_EMAIL` doesn't need to be set anywhere — Formspree doesn't accept a recipient override in the request; the actual delivery address is whatever's configured on the Formspree dashboard for that form.
 
 ## Validate the project
 

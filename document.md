@@ -211,17 +211,31 @@ The contact endpoint (`app/api/contact/route.ts`) validates the request with the
 5. Restart `npm run dev` — Next.js only reads `.env.local` at process startup, so edits require a restart.
 6. Test by submitting the form at `/contact` and confirming the email arrives.
 
-### Deployment environment
+### Deploying to Cloudflare Workers
 
-`.env.local` is gitignored and never deploys automatically. Set the same variables directly in the hosting provider's project environment settings before going live:
+The site deploys to Cloudflare Workers via the [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare) adapter — it wraps the standard `next build` output, so no application code changes are needed beyond the adapter's own config files (`wrangler.jsonc`, `open-next.config.ts`, `public/_headers`).
 
-```text
-NEXT_PUBLIC_SITE_URL      — the real production domain, not localhost
-FORMSPREE_FORM_ID         — same value as local; server-only, no NEXT_PUBLIC_ prefix
-CONTACT_RECIPIENT_EMAIL   — documentation only, see above
+`.env.local` is gitignored and never deploys automatically, and `NEXT_PUBLIC_SITE_URL` is inlined by Next.js at **build time**, not read at runtime — so it needs its own file, not a dashboard setting:
+
+```powershell
+# one-time: create .env.production.local (gitignored, outranks .env.local)
+# NEXT_PUBLIC_SITE_URL=https://the-real-production-domain
+
+npx wrangler login                         # browser OAuth, one-time
+npx wrangler secret put FORMSPREE_FORM_ID  # paste the value at the interactive prompt — never as a CLI argument
+
+npm run deploy                             # = opennextjs-cloudflare build && opennextjs-cloudflare deploy
 ```
 
-On Vercel: Project → Settings → Environment Variables.
+| Variable | Mechanism |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | `.env.production.local` (build-time only; must exist before `npm run deploy`) |
+| `FORMSPREE_FORM_ID` | `wrangler secret put FORMSPREE_FORM_ID` (encrypted runtime secret; auto-populated onto `process.env`, zero code change) |
+| `CONTACT_RECIPIENT_EMAIL` | Not needed anywhere — documentation only, see above |
+
+`npm run deploy` prints a working `*.workers.dev` URL. To serve it from a real domain on the same Cloudflare account: dashboard → Workers & Pages → the Worker → Settings → Domains & Routes → Add → Custom Domain. Cloudflare provisions DNS and the SSL certificate automatically; remove any existing conflicting CNAME/A record on that hostname first.
+
+For local smoke-testing against the real Workers runtime (Miniflare) before deploying, add a gitignored `.dev.vars` file with `FORMSPREE_FORM_ID=...` and run `npm run preview`.
 
 ## 7. Routes
 
@@ -267,7 +281,10 @@ lib/
   validation.ts
 public/
   office-texture.svg
+  _headers
 next.config.mjs
+open-next.config.ts
+wrangler.jsonc
 package.json
 .env.example
 ```
@@ -305,6 +322,8 @@ The in-memory rate limiter is suitable only for a simple MVP and single-instance
 The Content-Security-Policy currently allows `'unsafe-inline'` for `script-src`, which Next.js's App Router relies on for its own inline hydration scripts. There is no `dangerouslySetInnerHTML` or similar sink in this codebase today, so there is no known exploitable injection path, but `'unsafe-inline'` means CSP would not contain a future one. Removing it requires a per-request nonce issued from `middleware.ts` and threaded into the CSP header (Next.js reads the nonce automatically from a `script-src 'nonce-...'` value it finds in the response header) — a bigger change than a config tweak, so it is left as a follow-up rather than done inline here.
 
 In development only, `script-src` also includes `'unsafe-eval'` (see `next.config.mjs`), because Next.js's Fast Refresh runtime needs `eval` to bootstrap in dev mode — without it, the page fails to hydrate at all and the site silently falls back to native (broken) HTML form submissions. Production never includes `'unsafe-eval'`, since production bundles don't use `eval`.
+
+On Cloudflare Workers specifically, `public/_headers` duplicates these same security headers as a static mirror of `next.config.mjs`'s `headers()`. This is necessary, not redundant: Cloudflare's static-asset serving (the `ASSETS` binding) serves prerendered pages directly and bypasses `next.config.mjs`'s `headers()` entirely for every route except `/api/contact` (the one Worker-handled route). If the CSP or other security headers ever change, update both files — `next.config.mjs` for `/api/contact`, `public/_headers` for every static page.
 
 ## 10. Validation before a commit
 

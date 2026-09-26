@@ -1,3 +1,5 @@
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
 const isDev = process.env.NODE_ENV === "development";
 
 // Next.js dev mode's Fast Refresh runtime needs 'unsafe-eval' to work; production
@@ -22,3 +24,5 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
+initOpenNextCloudflareForDev();

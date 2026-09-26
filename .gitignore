@@ -11,3 +11,10 @@ coverage/
 .DS_Store
 .md
 .playwright-mcp/
+.open-next/
+.wrangler/
+.dev.vars
+.dev.vars*
+.env.local
+.env.development.local
+Zscaler Root CA.crt

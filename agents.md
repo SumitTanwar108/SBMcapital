@@ -65,6 +65,6 @@ Before completion, run linting, type checking, and a production build. Exercise 
 
 ## Deployment and reporting
 
-Target Vercel by default, but do not describe the site as production-ready until the production form, domain, privacy pages, and ICAI/compliance review are complete. Do not hard-code a final domain; use `NEXT_PUBLIC_SITE_URL`.
+Target Cloudflare Workers (via the `@opennextjs/cloudflare` adapter) by default, but do not describe the site as production-ready until the production form, domain, privacy pages, and ICAI/compliance review are complete. Do not hard-code a final domain; use `NEXT_PUBLIC_SITE_URL`.
 
 When work is complete, report changed files, implemented routes, commands and results, email-provider environment variables, remaining placeholders, security limitations, local run steps, deployment steps, and the pre-launch checklist. Do not commit changes unless explicitly asked.
