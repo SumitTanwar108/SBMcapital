@@ -69,12 +69,13 @@ Then update `.env.local`:
 
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+FORMSPREE_FORM_ID=TODO
 CONTACT_RECIPIENT_EMAIL=TODO
-EMAIL_PROVIDER_API_KEY=TODO
-EMAIL_FROM_ADDRESS=TODO
 ```
 
-Until the email provider variables are configured, the contact endpoint intentionally returns a generic not-connected response. It does not store or log submissions. Never commit `.env.local` or provider credentials.
+`FORMSPREE_FORM_ID` is server-only (no `NEXT_PUBLIC_` prefix) and identifies a form on [Formspree](https://formspree.io). The actual recipient inbox is whatever address is configured and verified for that form in the Formspree dashboard — `CONTACT_RECIPIENT_EMAIL` is documentation only, since Formspree does not accept a recipient override in the request (anti-spam design). Until `FORMSPREE_FORM_ID` is configured, the contact endpoint intentionally returns a generic not-configured response. It does not store or log submissions. Never commit `.env.local` or provider credentials.
+
+**Deploying:** `.env.local` never deploys automatically — set the same variables in your hosting provider's project environment settings too (e.g. on Vercel: Project → Settings → Environment Variables), using the real production domain for `NEXT_PUBLIC_SITE_URL`.
 
 ## Validate the project
 

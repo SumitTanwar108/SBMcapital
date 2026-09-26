@@ -188,31 +188,40 @@ Then replace the placeholders:
 
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+FORMSPREE_FORM_ID=your-form-id
 CONTACT_RECIPIENT_EMAIL=approved-inbox@example.com
-EMAIL_PROVIDER_API_KEY=provider-secret
-EMAIL_FROM_ADDRESS=approved-sender@example.com
 ```
 
 Do not commit `.env.local`. It is ignored by Git. Never place email provider secrets in browser code.
 
-The contact endpoint (`app/api/contact/route.ts`) sends enquiries through [Resend](https://resend.com) using its REST API directly via `fetch` (no SDK dependency). Until all three email variables below are set, it returns a generic not-connected response instead of attempting to send.
+The contact endpoint (`app/api/contact/route.ts`) validates the request with the shared Zod schema (`lib/validation.ts`), then forwards it server-side to [Formspree](https://formspree.io) using `FORMSPREE_FORM_ID`. That variable is intentionally **not** prefixed with `NEXT_PUBLIC_` — it must stay server-only so the browser bundle never sees it. Until it is set, the endpoint returns a generic not-configured response instead of attempting to send.
 
-### Setting up Resend
+`CONTACT_RECIPIENT_EMAIL` is documentation only: Formspree does not accept a recipient override in the request (anti-spam design), so the actual delivery address is whatever is configured and verified for that form in the Formspree dashboard — not anything read from this codebase.
 
-1. Create a Resend account at resend.com (free tier: 3,000 emails/month).
-2. Get a sender address:
-   - Quick test: use the sandbox sender `onboarding@resend.dev`. It only delivers to the email address on your own Resend account — fine for confirming the integration works, not for real enquiries.
-   - Real use: verify your own domain in the Resend dashboard (Domains → Add Domain → add the DNS records it gives you), then use an address on that domain, e.g. `enquiries@yourdomain.com`.
-3. Create an API key: dashboard → API Keys → Create API Key. It looks like `re_xxxxxxxxxxxx`.
+### Setting up Formspree
+
+1. Create a Formspree account at formspree.io and create a form.
+2. In the form's Settings, set — and verify, via the confirmation link Formspree emails — the notification address, e.g. `askushapinnacleadvisory@gmail.com`. This is the address that actually receives enquiries; it lives entirely in the Formspree dashboard.
+3. Copy the form ID from the form's endpoint URL (`https://formspree.io/f/<form-id>`).
 4. Fill in `.env.local`:
    ```env
+   FORMSPREE_FORM_ID=your-form-id
    CONTACT_RECIPIENT_EMAIL=askushapinnacleadvisory@gmail.com
-   EMAIL_PROVIDER_API_KEY=re_xxxxxxxxxxxx
-   EMAIL_FROM_ADDRESS=onboarding@resend.dev
    ```
-   Swap `EMAIL_FROM_ADDRESS` for the verified domain address once you have one.
 5. Restart `npm run dev` — Next.js only reads `.env.local` at process startup, so edits require a restart.
 6. Test by submitting the form at `/contact` and confirming the email arrives.
+
+### Deployment environment
+
+`.env.local` is gitignored and never deploys automatically. Set the same variables directly in the hosting provider's project environment settings before going live:
+
+```text
+NEXT_PUBLIC_SITE_URL      — the real production domain, not localhost
+FORMSPREE_FORM_ID         — same value as local; server-only, no NEXT_PUBLIC_ prefix
+CONTACT_RECIPIENT_EMAIL   — documentation only, see above
+```
+
+On Vercel: Project → Settings → Environment Variables.
 
 ## 7. Routes
 
@@ -294,6 +303,8 @@ The project includes:
 The in-memory rate limiter is suitable only for a simple MVP and single-instance deployment. Use a shared rate-limit store or managed protection before scaling horizontally. It keys on the `X-Forwarded-For` header, which is only trustworthy behind a proxy that overwrites client-supplied values (Vercel's edge does this); behind a different or misconfigured proxy, a client can forge this header to bypass the limit. If the header is absent entirely, all callers share a single `"unknown"` bucket, so heavy legitimate traffic without that header could rate-limit unrelated users.
 
 The Content-Security-Policy currently allows `'unsafe-inline'` for `script-src`, which Next.js's App Router relies on for its own inline hydration scripts. There is no `dangerouslySetInnerHTML` or similar sink in this codebase today, so there is no known exploitable injection path, but `'unsafe-inline'` means CSP would not contain a future one. Removing it requires a per-request nonce issued from `middleware.ts` and threaded into the CSP header (Next.js reads the nonce automatically from a `script-src 'nonce-...'` value it finds in the response header) — a bigger change than a config tweak, so it is left as a follow-up rather than done inline here.
+
+In development only, `script-src` also includes `'unsafe-eval'` (see `next.config.mjs`), because Next.js's Fast Refresh runtime needs `eval` to bootstrap in dev mode — without it, the page fails to hydrate at all and the site silently falls back to native (broken) HTML form submissions. Production never includes `'unsafe-eval'`, since production bundles don't use `eval`.
 
 ## 10. Validation before a commit
 

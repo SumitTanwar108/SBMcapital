@@ -224,6 +224,8 @@ a{color:inherit;text-decoration:none}
 .form-status{font-size:12px;margin:0}
 .form-status.success{color:#8fbf8a}
 .form-status.error{color:var(--error)}
+.contact-form input:disabled,.contact-form select:disabled,.contact-form textarea:disabled{opacity:.6;cursor:not-allowed}
+.contact-form label span[aria-label="required"]{color:var(--signal);font-size:14px}
 
 /* Legal */
 .legal-page{padding-bottom:150px;padding-top:100px}
