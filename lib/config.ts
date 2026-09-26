@@ -12,7 +12,11 @@ export const siteConfig = {
     description: "Usha Pinnacle Advisory is a business consultancy in New Delhi, led by Chartered Accountants Nitin Khanna and Jatin Khanna. We work across tax, GST, accounts, corporate and regulatory compliance, risk, and the wider advisory needs of a growing business.",
     city: "New Delhi",
     state: "Delhi",
-    address: "WZ 108, Tihar Village, New Delhi",
+    address: "Plot No-42, Sector 13, Dwarka, New Delhi- 110078",
+    addresses: [
+      "Plot No-42, Sector 13, Dwarka, New Delhi- 110078",
+      "WZ 108, Tihar Village, New Delhi"
+    ],
     phone: "+91 9953555773",
     email: "askushapinnacleadvisory@gmail.com",
     officeHours: "9am - 6pm"
@@ -75,65 +79,55 @@ export const siteConfig = {
   },
   services: [
     {
-      title: "Regulatory Certifications",
-      text: "Registrations, approvals, and sector-specific compliance support for regulated products and businesses.",
+      title: "Risk Assurance",
+      text: "Internal controls, audits, and forensic review support.",
       categories: [
         {
-          title: "BIS Certification",
+          title: "Risk Assurance Services",
           items: [
-            { name: "CRS Certification for Electronics and IT Products", detail: "Support with BIS compulsory registration for electronics and IT products." },
-            { name: "ISI Certification for Domestic Manufacturer", detail: "Assistance with ISI certification for domestic manufacturers." },
-            { name: "ISI Certification for Foreign Manufacturer (FMCS)", detail: "Assistance with the foreign manufacturer certification scheme." },
-            { name: "Hall Mark Registration", detail: "Support for hall mark registration requirements." },
-            { name: "BIS Certificate of Conformity (COC)", detail: "Preparation and filing for BIS certificate of conformity." }
+            { name: "Internal Audit & Controls", detail: "Support with internal audit and control reviews." },
+            { name: "ICFR (Internal Controls over Financial Reporting)", detail: "Support for internal controls over financial reporting." }
           ]
         },
         {
-          title: "EPR Registration (Waste Management)",
+          title: "Audits",
           items: [
-            { name: "EPR Registration under Electronic Waste Management", detail: "Support for electronic waste EPR registration." },
-            { name: "EPR Registration under Plastic Waste Management", detail: "Support for plastic waste EPR registration." },
-            { name: "EPR Registration under Battery Waste Management", detail: "Support for battery waste EPR registration." },
-            { name: "EPR Registration under Tyre Waste Management", detail: "Support for tyre waste EPR registration." }
+            { name: "Regulatory Compliance Audits", detail: "Support for regulatory compliance audits." },
+            { name: "Stock & Inventory Audits", detail: "Support for stock and inventory verification audits." },
+            { name: "Financial & Operational Risk Reviews", detail: "Support for financial and operational risk reviews." },
+            { name: "Cybersecurity Risk Assessment", detail: "Support for cybersecurity risk assessment reviews." }
           ]
         },
         {
-          title: "CDSCO Certification",
+          title: "Forensic Investigation",
           items: [
-            { name: "Cosmetics Registration (COS-2, Manufacturing & Loan License)", detail: "Assistance with cosmetics registration and related licences." },
-            { name: "Medical Device Registration (MD15, MD 42, Manufacturing License)", detail: "Assistance with medical device registration and manufacturing licences." },
-            { name: "Whole Sale & Drug License", detail: "Support for wholesale and drug licence applications." },
-            { name: "ISO Certification", detail: "Support with ISO certification documentation." }
+            { name: "Fraud Detection & Prevention", detail: "Support with fraud detection and prevention reviews." },
+            { name: "Risk Assessment & Management", detail: "Support for risk assessment and management work." }
+          ]
+        }
+      ]
+    },
+    {
+      title: "Global Accounting",
+      text: "Accounting, reporting, and cross-border transaction support.",
+      categories: [
+        {
+          title: "Financial Reporting & Advisory",
+          items: [
+            { name: "Financial Reporting & Statement Preparation", detail: "Support with financial reporting and statement preparation." },
+            { name: "Management Reporting & Financial Analysis", detail: "Support with management reporting and financial analysis." }
           ]
         },
         {
-          title: "MTCTE Approval",
+          title: "General Accounting & Book Keep Services",
           items: [
-            { name: "TEC Approval", detail: "Support for telecom equipment approval requirements." }
+            { name: "Bookkeeping & Accounting Outsourcing", detail: "Support with bookkeeping and accounting outsourcing." }
           ]
         },
         {
-          title: "AERB Approval for Radiation Safety",
+          title: "Exim Advisory",
           items: [
-            { name: "AERB Type Approval or NOC", detail: "Assistance with radiation safety approval or no-objection documentation." }
-          ]
-        },
-        {
-          title: "Legal Metrology",
-          items: [
-            { name: "LMPC/PCR/Rule 27 or Packaged Commodity Registration", detail: "Support for packaged commodity registration requirements." },
-            { name: "Importer License (Section 19)", detail: "Assistance with importer licence filing and support." },
-            { name: "Model Approval (Section 22)", detail: "Support with model approval applications." },
-            { name: "Dealer License & Repairer License", detail: "Support with dealer and repairer licensing." },
-            { name: "Stamping & Verification", detail: "Support for stamping and verification requirements." }
-          ]
-        },
-        {
-          title: "WPC-ETA Certification",
-          items: [
-            { name: "WPC-ETA Approval", detail: "Support for WPC-ETA approval applications." },
-            { name: "Demonstration License", detail: "Assistance with demonstration licence filings." },
-            { name: "Dealer Possession License", detail: "Assistance with dealer possession licence filings." }
+            { name: "Cross-Border Transaction Advisory", detail: "Support with cross-border transaction advisory." }
           ]
         }
       ]
@@ -210,30 +204,123 @@ export const siteConfig = {
       ]
     },
     {
-      title: "Risk Assurance",
-      text: "Internal controls, audits, and forensic review support.",
+      title: "Payroll & Treasury",
+      text: "Payroll administration, treasury operations, and employee tax support.",
       categories: [
         {
-          title: "Risk Assurance Services",
+          title: "Treasury Management Services",
           items: [
-            { name: "Internal Audit & Controls", detail: "Support with internal audit and control reviews." },
-            { name: "ICFR (Internal Controls over Financial Reporting)", detail: "Support for internal controls over financial reporting." }
+            { name: "Treasury Management & Cash Flow Optimization", detail: "Support with treasury management and cash flow optimisation." },
+            { name: "Cash Forecasting & Liquidity Management", detail: "Support with cash forecasting and liquidity management." },
+            { name: "Foreign Exchange & Hedging Solutions", detail: "Support for foreign exchange and hedging coordination." },
+            { name: "Bank Reconciliation & Payment Processing", detail: "Support with bank reconciliation and payment processing." },
+            { name: "Regulatory Compliance (EPF, ESI, etc.)", detail: "Support for payroll-related regulatory compliance." },
+            { name: "Salary Structuring & Tax Planning", detail: "Support with salary structuring and tax planning." }
           ]
         },
         {
-          title: "Audits",
+          title: "Individual Taxation (HNI and Other Individuals)",
           items: [
-            { name: "Regulatory Compliance Audits", detail: "Support for regulatory compliance audits." },
-            { name: "Stock & Inventory Audits", detail: "Support for stock and inventory verification audits." },
-            { name: "Financial & Operational Risk Reviews", detail: "Support for financial and operational risk reviews." },
-            { name: "Cybersecurity Risk Assessment", detail: "Support for cybersecurity risk assessment reviews." }
+            { name: "Tax Computation & Filing (Income Tax, TDS)", detail: "Support with individual tax computation and filing." },
+            { name: "Employee Benefits & Reimbursement Management", detail: "Support with employee benefits and reimbursements." },
+            { name: "Payroll Outsourcing & Management", detail: "Support with payroll outsourcing and management." }
           ]
         },
         {
-          title: "Forensic Investigation",
+          title: "Talent Acquisition & Payroll Management",
           items: [
-            { name: "Fraud Detection & Prevention", detail: "Support with fraud detection and prevention reviews." },
-            { name: "Risk Assessment & Management", detail: "Support for risk assessment and management work." }
+            { name: "Payroll Processing & Compliance", detail: "Support with payroll processing and compliance." }
+          ]
+        }
+      ]
+    },
+    {
+      title: "Regulatory Certifications",
+      text: "Registrations, approvals, and sector-specific compliance support for regulated products and businesses.",
+      categories: [
+        {
+          title: "BIS Certification",
+          items: [
+            { name: "CRS Certification for Electronics and IT Products", detail: "Support with BIS compulsory registration for electronics and IT products." },
+            { name: "ISI Certification for Domestic Manufacturer", detail: "Assistance with ISI certification for domestic manufacturers." },
+            { name: "ISI Certification for Foreign Manufacturer (FMCS)", detail: "Assistance with the foreign manufacturer certification scheme." },
+            { name: "Hall Mark Registration", detail: "Support for hall mark registration requirements." },
+            { name: "BIS Certificate of Conformity (COC)", detail: "Preparation and filing for BIS certificate of conformity." }
+          ]
+        },
+        {
+          title: "EPR Registration (Waste Management)",
+          items: [
+            { name: "EPR Registration under Electronic Waste Management", detail: "Support for electronic waste EPR registration." },
+            { name: "EPR Registration under Plastic Waste Management", detail: "Support for plastic waste EPR registration." },
+            { name: "EPR Registration under Battery Waste Management", detail: "Support for battery waste EPR registration." },
+            { name: "EPR Registration under Tyre Waste Management", detail: "Support for tyre waste EPR registration." }
+          ]
+        },
+        {
+          title: "CDSCO Certification",
+          items: [
+            { name: "Cosmetics Registration (COS-2, Manufacturing & Loan License)", detail: "Assistance with cosmetics registration and related licences." },
+            { name: "Medical Device Registration (MD15, MD 42, Manufacturing License)", detail: "Assistance with medical device registration and manufacturing licences." },
+            { name: "Whole Sale & Drug License", detail: "Support for wholesale and drug licence applications." },
+            { name: "ISO Certification", detail: "Support with ISO certification documentation." }
+          ]
+        },
+        {
+          title: "MTCTE Approval",
+          items: [
+            { name: "TEC Approval", detail: "Support for telecom equipment approval requirements." }
+          ]
+        },
+        {
+          title: "AERB Approval for Radiation Safety",
+          items: [
+            { name: "AERB Type Approval or NOC", detail: "Assistance with radiation safety approval or no-objection documentation." }
+          ]
+        },
+        {
+          title: "Legal Metrology",
+          items: [
+            { name: "LMPC/PCR/Rule 27 or Packaged Commodity Registration", detail: "Support for packaged commodity registration requirements." },
+            { name: "Importer License (Section 19)", detail: "Assistance with importer licence filing and support." },
+            { name: "Model Approval (Section 22)", detail: "Support with model approval applications." },
+            { name: "Dealer License & Repairer License", detail: "Support with dealer and repairer licensing." },
+            { name: "Stamping & Verification", detail: "Support for stamping and verification requirements." }
+          ]
+        },
+        {
+          title: "WPC-ETA Certification",
+          items: [
+            { name: "WPC-ETA Approval", detail: "Support for WPC-ETA approval applications." },
+            { name: "Demonstration License", detail: "Assistance with demonstration licence filings." },
+            { name: "Dealer Possession License", detail: "Assistance with dealer possession licence filings." }
+          ]
+        }
+      ]
+    },
+    {
+      title: "IPR (Trade Mark, Copyright & Patent)",
+      text: "Trademark, copyright, and patent support across the IP lifecycle.",
+      categories: [
+        {
+          title: "IPR Representation",
+          items: [
+            { name: "Drafting Reply & Objection Handling", detail: "Support with drafting replies and handling objections." },
+            { name: "Legal Appearance & Representation", detail: "Support for legal appearance and representation matters." },
+            { name: "Copyright Infringement", detail: "Support with copyright infringement matters." }
+          ]
+        },
+        {
+          title: "Intellectual Property Right Services",
+          items: [
+            { name: "Trade Mark Research", detail: "Support with trademark research and clearance checks." },
+            { name: "Fresh Trade Mark Registration", detail: "Support with fresh trademark registration applications." }
+          ]
+        },
+        {
+          title: "Patent",
+          items: [
+            { name: "Patent", detail: "Support with patent filing and related applications." }
           ]
         }
       ]
@@ -267,89 +354,6 @@ export const siteConfig = {
           title: "Authorised Economic Operator Program",
           items: [
             { name: "AEO Certification (Authorized Economic Operator)", detail: "Support for AEO certification applications." }
-          ]
-        }
-      ]
-    },
-    {
-      title: "IPR (Trade Mark, Copyright & Patent)",
-      text: "Trademark, copyright, and patent support across the IP lifecycle.",
-      categories: [
-        {
-          title: "IPR Representation",
-          items: [
-            { name: "Drafting Reply & Objection Handling", detail: "Support with drafting replies and handling objections." },
-            { name: "Legal Appearance & Representation", detail: "Support for legal appearance and representation matters." },
-            { name: "Copyright Infringement", detail: "Support with copyright infringement matters." }
-          ]
-        },
-        {
-          title: "Intellectual Property Right Services",
-          items: [
-            { name: "Trade Mark Research", detail: "Support with trademark research and clearance checks." },
-            { name: "Fresh Trade Mark Registration", detail: "Support with fresh trademark registration applications." }
-          ]
-        },
-        {
-          title: "Patent",
-          items: [
-            { name: "Patent", detail: "Support with patent filing and related applications." }
-          ]
-        }
-      ]
-    },
-    {
-      title: "Global Accounting",
-      text: "Accounting, reporting, and cross-border transaction support.",
-      categories: [
-        {
-          title: "Financial Reporting & Advisory",
-          items: [
-            { name: "Financial Reporting & Statement Preparation", detail: "Support with financial reporting and statement preparation." },
-            { name: "Management Reporting & Financial Analysis", detail: "Support with management reporting and financial analysis." }
-          ]
-        },
-        {
-          title: "General Accounting & Book Keep Services",
-          items: [
-            { name: "Bookkeeping & Accounting Outsourcing", detail: "Support with bookkeeping and accounting outsourcing." }
-          ]
-        },
-        {
-          title: "Exim Advisory",
-          items: [
-            { name: "Cross-Border Transaction Advisory", detail: "Support with cross-border transaction advisory." }
-          ]
-        }
-      ]
-    },
-    {
-      title: "Payroll & Treasury",
-      text: "Payroll administration, treasury operations, and employee tax support.",
-      categories: [
-        {
-          title: "Treasury Management Services",
-          items: [
-            { name: "Treasury Management & Cash Flow Optimization", detail: "Support with treasury management and cash flow optimisation." },
-            { name: "Cash Forecasting & Liquidity Management", detail: "Support with cash forecasting and liquidity management." },
-            { name: "Foreign Exchange & Hedging Solutions", detail: "Support for foreign exchange and hedging coordination." },
-            { name: "Bank Reconciliation & Payment Processing", detail: "Support with bank reconciliation and payment processing." },
-            { name: "Regulatory Compliance (EPF, ESI, etc.)", detail: "Support for payroll-related regulatory compliance." },
-            { name: "Salary Structuring & Tax Planning", detail: "Support with salary structuring and tax planning." }
-          ]
-        },
-        {
-          title: "Individual Taxation (HNI and Other Individuals)",
-          items: [
-            { name: "Tax Computation & Filing (Income Tax, TDS)", detail: "Support with individual tax computation and filing." },
-            { name: "Employee Benefits & Reimbursement Management", detail: "Support with employee benefits and reimbursements." },
-            { name: "Payroll Outsourcing & Management", detail: "Support with payroll outsourcing and management." }
-          ]
-        },
-        {
-          title: "Talent Acquisition & Payroll Management",
-          items: [
-            { name: "Payroll Processing & Compliance", detail: "Support with payroll processing and compliance." }
           ]
         }
       ]

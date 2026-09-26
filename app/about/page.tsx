@@ -13,19 +13,7 @@ export default function AboutPage() {
         <h1>{business.displayName}<br />is built for<br /><em>long-term trust.</em></h1>
         <p>{content.about.overview}</p>
       </section>
-      <section className="section-wrap story-section">
-        <div className="story-grid">
-          <div>
-            <p className="eyebrow">Welcome <span /></p>
-            <h2>{content.home.welcomeTitle}</h2>
-          </div>
-          <div className="story-copy">
-            {content.home.welcomeParagraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </div>
-      </section>
+
       <section className="section-wrap principles-section">
         <div className="principles-grid">
           <article className="principle-panel principle-panel-strong">
@@ -57,22 +45,6 @@ export default function AboutPage() {
           <p className="eyebrow">Strategic pillars <span /></p>
           <p>{content.about.strategicPillars}</p>
         </article>
-      </section>
-      <section className="section-wrap profile-section">
-        <div className="about-stamp">Professional<br />stewardship,<br />close at hand.</div>
-        <div>
-          <p className="eyebrow">Professional profile <span /></p>
-          <h2>{professionals.map((person) => person.name).join(" & ")}</h2>
-          {profiledProfessionals.map((person) => (
-            <article className="profile-entry" key={person.name}>
-              {person.bio && <p className="about-copy">{person.bio}</p>}
-              <div className="profile-line">
-                <span>{person.name} · {person.designation}</span>
-                <span>{person.qualifications}</span>
-              </div>
-            </article>
-          ))}
-        </div>
       </section>
     </main>
   );

@@ -42,7 +42,7 @@ export default function HomePage() {
             <div className="hero-beam hero-beam-two" />
             <div className="hero-panel hero-panel-primary">
               <span className="hero-panel-kicker">How we support growth</span>
-              <strong>Compliance that stays readable.</strong>
+              <strong>Governance that stays readable.</strong>
               <p>Advisory, registrations, taxation, and operational support arranged as one connected business picture rather than disconnected tasks.</p>
             </div>
             <div className="hero-panel hero-panel-note hero-panel-note-a">
@@ -73,7 +73,7 @@ export default function HomePage() {
       <section className="trust-band">
         <div className="section-wrap trust-inner">
           <span>Built for the work behind the work</span>
-          <span>Compliance</span>
+          <span>Governance</span>
           <span>Accounts</span>
           <span>Advisory</span>
         </div>
