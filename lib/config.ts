@@ -9,7 +9,7 @@ export const siteConfig = {
     displayName: "Usha Pinnacle Advisory",
     legalName: "Usha Pinnacle Advisory",
     tagline: "Strategy Growth Success",
-    description: "Usha Pinnacle Advisory is a business consultancy in New Delhi, led by Chartered Accountants Nitin Khanna and Jatin Khanna. We work across tax, GST, accounts, corporate and regulatory compliance, risk, and the wider advisory needs of a growing business.",
+    description: "Usha Pinnacle Advisory is a business consultancy. We work across tax, GST, accounts, corporate and regulatory compliance, risk, and the wider advisory needs of a growing business.",
     city: "New Delhi",
     state: "Delhi",
     address: "Plot No-42, Sector 13, Dwarka, New Delhi- 110078",
@@ -17,7 +17,7 @@ export const siteConfig = {
       "Plot No-42, Sector 13, Dwarka, New Delhi- 110078",
       "WZ 108, Tihar Village, New Delhi"
     ],
-    phone: "+91 9953555773",
+    phone: "TODO",
     email: "askushapinnacleadvisory@gmail.com",
     officeHours: "9am - 6pm"
   },

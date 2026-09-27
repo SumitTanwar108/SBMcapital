@@ -21,9 +21,6 @@ export default function OpengraphImage() {
           fontFamily: "Georgia, serif"
         }}
       >
-        <div style={{ display: "flex", fontSize: 22, letterSpacing: 4, textTransform: "uppercase", color: "#d9b54a" }}>
-          {business.city} &middot; Chartered Accountants
-        </div>
         <div style={{ display: "flex", fontSize: 64, fontWeight: 700, marginTop: 24 }}>
           {business.displayName}
         </div>
