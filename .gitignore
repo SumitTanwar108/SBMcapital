@@ -18,3 +18,4 @@ coverage/
 .env.local
 .env.development.local
 Zscaler Root CA.crt
+deployment.txt

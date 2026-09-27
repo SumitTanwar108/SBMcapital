@@ -2,7 +2,7 @@ export const siteConfig = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   seo: {
     title: "Clarity for the next decision",
-    description: "Business consultancy in New Delhi led by Chartered Accountants, offering end-to-end support across tax, GST, accounts, corporate, regulatory, risk, and business advisory services.",
+    description: "Business consultancy, offering end-to-end support across tax, GST, accounts, corporate, regulatory, risk, and business advisory services.",
     keywords: ["Business consultancy New Delhi", "Chartered Accountant New Delhi", "GST compliance", "tax compliance India", "business advisory", "corporate compliance services"]
   },
   business: {

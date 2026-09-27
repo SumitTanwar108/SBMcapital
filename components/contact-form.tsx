@@ -105,7 +105,7 @@ export function ContactForm() {
           autoComplete="tel"
           inputMode="tel"
           required
-          placeholder="+91 98765 43210"
+          placeholder="+91 9XXXXXXXXX"
           pattern="^(?:\+91[\s-]?)?[6-9]\d{9}$"
           title="Enter a valid Indian phone number (10 digits starting with 6-9)"
         />
