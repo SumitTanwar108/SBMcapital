@@ -19,3 +19,5 @@ coverage/
 .env.development.local
 Zscaler Root CA.crt
 deployment.txt
+service-hierarchy-final.md
+1_extracted_content.txt

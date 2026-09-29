@@ -7,6 +7,7 @@ type ServiceItem = {
 
 type ServiceCategory = {
   title: string;
+  text: string;
   items: readonly ServiceItem[];
 };
 
@@ -20,6 +21,7 @@ type ServiceAccordionProps = {
   services: readonly ServiceEntry[];
   headingLevel?: "h2" | "h3";
   className?: string;
+  expandedByDefault?: boolean;
 };
 
 function Heading({ level: Tag, children }: { level: "h2" | "h3"; children: ReactNode }) {
@@ -37,13 +39,13 @@ function renderPreview(values: readonly string[], fallbackCount?: number) {
   </>;
 }
 
-export function ServiceAccordion({ services, headingLevel = "h3", className }: ServiceAccordionProps) {
+export function ServiceAccordion({ services, headingLevel = "h3", className, expandedByDefault = false }: ServiceAccordionProps) {
   const Title = headingLevel;
 
   return <div className={className ?? "services-grid"}>{services.map((service) => {
     const categoryTitles = service.categories.map((category) => category.title);
     return (
-      <details className="service-card" key={service.title}>
+      <details className="service-card" key={service.title} open={expandedByDefault}>
         <summary className="service-summary">
           <div className="service-summary-copy">
             <Heading level={Title}>{service.title}</Heading>
@@ -57,11 +59,12 @@ export function ServiceAccordion({ services, headingLevel = "h3", className }: S
         </summary>
         <div className="service-groups">
           {service.categories.map((category) => (
-            <details className="service-group" key={category.title}>
+            <details className="service-group" key={category.title} open={expandedByDefault}>
               <summary className="service-group-summary">
                 <div className="service-group-copy">
                   <span className="service-group-label">Service cluster</span>
                   <span className="service-group-title">{category.title}</span>
+                  <span className="service-group-preview">{category.text}</span>
                   <span className="service-group-preview">Includes {category.items.slice(0, 2).map((item) => item.name).join(" and ")}{category.items.length > 2 ? `, plus ${category.items.length - 2} more` : ""}</span>
                 </div>
                 <span className="service-group-arrow" aria-hidden="true">⌄</span>
