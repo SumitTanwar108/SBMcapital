@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
+import { ContactTeaser } from "@/components/contact-teaser";
+import { PartnerCard } from "@/components/partner-card";
 import { ServiceAccordion } from "@/components/service-accordion";
 
 export default function HomePage() {
@@ -94,6 +96,23 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-wrap partners-section" aria-labelledby="partners-heading">
+        <div className="section-heading partners-heading">
+          <p className="eyebrow">Our Partners <span /></p>
+          <h2 id="partners-heading">The people behind<br />the <em>partnership.</em></h2>
+        </div>
+        <div className="partners-grid">
+          <PartnerCard
+            name="Jatin Khanna"
+            image="/images/jatin 2026-09-29 at 7.35.58 PM.jpeg"
+          />
+          <PartnerCard
+            name="Nitin Khanna"
+            image="/images/nitin 2026-09-29 at 7.36.12 PM.jpeg"
+          />
+        </div>
+      </section>
+
       <section className="section-wrap services-section" id="services">
         <div className="section-heading">
           <p className="eyebrow">What we can help with <span /></p>
@@ -129,13 +148,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="contact-teaser">
-        <div className="section-wrap teaser-inner">
-          <p className="eyebrow eyebrow-light">Start here <span /></p>
-          <h2>Bring the question.<br /><em>We'll listen.</em></h2>
-          <Link className="button button-light" href="/contact">Send an enquiry <span>↗</span></Link>
-        </div>
-      </section>
+      <ContactTeaser />
     </main>
   );
 }

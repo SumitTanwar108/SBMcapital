@@ -12,12 +12,12 @@ export const siteConfig = {
     description: "Usha Pinnacle Advisory is a business consultancy. We work across tax, GST, accounts, corporate and regulatory compliance, risk, and the wider advisory needs of a growing business.",
     city: "New Delhi",
     state: "Delhi",
-    address: "Plot No-42, Sector 13, Dwarka, New Delhi- 110078",
+    address: "Plot No-42, Sector 13, Dwarka, New Delhi- 110075",
     addresses: [
-      "Plot No-42, Sector 13, Dwarka, New Delhi- 110078",
+      "Plot No-42, Sector 13, Dwarka, New Delhi- 110075",
       "WZ 108, Tihar Village, New Delhi"
     ],
-    phone: "TODO",
+    phone: "+91-9953555773",
     email: "askushapinnacleadvisory@gmail.com",
     officeHours: "9am - 6pm"
   },

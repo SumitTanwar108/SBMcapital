@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContactTeaser } from "@/components/contact-teaser";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = { title: "About", description: `About ${siteConfig.business.displayName}.` };
@@ -46,6 +47,7 @@ export default function AboutPage() {
           <p>{content.about.strategicPillars}</p>
         </article>
       </section>
+      <ContactTeaser />
     </main>
   );
 }
